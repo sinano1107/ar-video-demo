@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- we import arjs version without NFT but with marker + location based support -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script>
+        function playVideo() {
+            const video = document.getElementById('video');
+            video.play();
+        }
+
+        function pauseVideo() {
+            const video = document.getElementById('video');
+            video.pause();
+        }
+    </script>
+    <body style="margin: 0px; overflow: hidden">
+        <a-scene embedded arjs vr-mode-ui="enabled: false">
+            <a-assets>
+                <video id="video" src="./campfire.mp4"></video>
+            </a-assets>
+            <a-marker preset="hiro">
+                <a-video src="#video" rotation="270" auto></a-video>
+            </a-marker>
+            <a-entity camera></a-entity>
+        </a-scene>
+
+        <div
+            style="
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                width: 100px;
+                height: 50px;
+                z-index: 900;
+            "
+        >
+            <button onclick="playVideo()">再生</button>
+            <button onclick="pauseVideo()">一時停止</button>
+        </div>
+    </body>
+</html>
